@@ -1,14 +1,14 @@
 {{define "breadcrumb"}}
 	<li><a href="/balancers">Balancers</a></li>
 	<li><a href="/balancers/{{.Balancer.Id.Hex}}">{{.Balancer.Label}}</a></li>
-	<li><a href="#">Servers</a></li>
+	<li><a href="#">Proxy</a></li>
 	<li class="active">New</li>
 {{end}}
 
 {{define "content"}}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			New Server
+			New Proxy Redirect
 		</div>
 		<div class="panel-body">
 			<br>
@@ -23,7 +23,7 @@
 				<br>
 
 				<div class="form-group">
-					<label for="inpAddress" class="col-sm-2 control-label">Address</label>
+					<label for="inpAddress" class="col-sm-2 control-label">Destionation address</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.address" class="form-control" id="inpAddress">
 					</div>

@@ -2,7 +2,7 @@
 	{{$bal := .Server.Balancer}}
 	<li><a href="/balancers">Balancers</a></li>
 	<li><a href="/balancers/{{$bal.Id.Hex}}">{{$bal.Label}}</a></li>
-	<li><a href="#">Servers</a></li>
+	<li><a href="#">Proxy</a></li>
 	<li><a href="#">{{.Server.Label}}</a></li>
 	<li class="active">Edit</li>
 {{end}}
@@ -10,7 +10,7 @@
 {{define "content"}}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Edit Server: {{.Server.Label}}
+			Edit Proxy Redirect: {{.Server.Label}}
 		</div>
 		<div class="panel-body">
 			<br>
@@ -25,14 +25,14 @@
 				<br>
 
 				<div class="form-group">
-					<label for="inpAddress" class="col-sm-2 control-label">Address</label>
+					<label for="inpAddress" class="col-sm-2 control-label">Destination address</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.address" class="form-control" id="inpAddress" value="{{.Server.Settings.Address}}">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="inpPath" class="col-sm-2 control-label">Path</label>
+					<label for="inpPath" class="col-sm-2 control-label">Server path</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.path" class="form-control" id="inpPath" value="{{.Server.Settings.Path}}">
 					</div>
@@ -45,12 +45,6 @@
 				</div>
 
 				<div class="form-group">
-					<label for="inpWeight" class="col-sm-2 control-label">Weight</label>
-					<div class="col-sm-6">
-						<input type="number" name="settings.weight" class="form-control" id="inpWeight" value="{{.Server.Settings.Weight}}">
-					</div>
-				</div>
-				<div class="form-group">
 					<label for="inpAvailability" class="col-sm-2 control-label">Availability</label>
 					<div class="col-sm-6">
 						<select name="settings.availability" class="form-control" id="inpAvailability">
@@ -58,6 +52,7 @@
 								<option value="{{$av}}" {{if eq $av $.Server.Settings.Availability}}selected{{end}}>{{$av.Label}}</option>
 							{{end}}
 						</select>
+						<input type="hidden" name="settings.weight" class="form-control" id="inpWeight" value="{{.Server.Settings.Weight}}">
 					</div>
 				</div>
 

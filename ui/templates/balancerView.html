@@ -6,7 +6,7 @@
 {{define "content"}}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Servers
+			Proxy redirections
 		</div>
 		<div class="panel-body">
 			<table class="table">
@@ -15,9 +15,11 @@
 						<th>Server</th>
 						<th>Address</th>
 						<th>Path</th>
+						<!--
 						<th>Weight</th>
 						<th>Availability</th>
 						<th>Status</th>
+					-->
 					</tr>
 				</thead>
 				<tbody>
@@ -26,18 +28,20 @@
 							<td>
 								<a href="/servers/{{$srv.Id.Hex}}">{{$srv.Label}}</a>
 							</td>
-							<td>{{$srv.Settings.Address}}</td>
-							<td>{{$srv.Settings.Path}}</td>
+							<td><a target="_blank" href="{{$srv.Settings.Address}}">{{$srv.Settings.Address}}</a><span class="glyphicon glyphicon-new-window"></span></td>
+							<td><a target="_blank" href="{{.Balancer.Settings.Hostname}}/{{$srv.Settings.Path}}">{{$srv.Settings.Path}}</a><span class="glyphicon glyphicon-new-window"></span></td>
+							<!--
 							<td>{{$srv.Settings.Weight}}</td>
 							<td>{{$srv.Settings.Availability.Label}}</td>
 							<td>Unknown</td>
+						-->
 						</tr>
 					{{end}}
 				</tbody>
 			</table>
-			<br>
+			<hr>
 			<div>
-				<a href="/balancers/{{.Balancer.Id.Hex}}/servers/new" class="btn btn-primary btn-xs">New Server</a>
+				<a href="/balancers/{{.Balancer.Id.Hex}}/servers/new" class="btn btn-primary btn-xs">New Proxy</a>
 			</div>
 		</div>
 	</div>
@@ -46,7 +50,7 @@
 {{define "sidebar"}}
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Balancer: {{.Balancer.Label}}
+			Server: {{.Balancer.Label}}
 		</div>
 		<div class="panel-body">
 			<dl>
@@ -61,10 +65,12 @@
 				<dt>Protocol</dt>
 				<dd>{{.Balancer.Settings.Protocol.Label}}</dd>
 			</dl>
+			<!--
 			<dl>
 				<dt>Algorithm</dt>
 				<dd>{{.Balancer.Settings.Algorithm.Label}}</dd>
 			</dl>
+		-->
 			<hr>
 			<a href="/balancers/{{.Balancer.Id.Hex}}/edit" class="btn btn-primary btn-xs">Edit</a>
 		</div>

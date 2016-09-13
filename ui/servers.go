@@ -163,7 +163,7 @@ func HandleServerUpdate(w http.ResponseWriter, r *http.Request) {
 
 	srv.Label = body.Label
 	srv.Settings.Address = body.Settings.Address
-	srv.Settings.Path = body.Settings.Paht
+	srv.Settings.Path = body.Settings.Path
 	srv.Settings.Header = body.Settings.Header
 	srv.Settings.Weight = body.Settings.Weight
 	srv.Settings.Availability = data.Availability(body.Settings.Availability)

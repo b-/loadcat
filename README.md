@@ -9,7 +9,7 @@ Loadcat is an Nginx configurator that allows you to use Nginx as a load balancer
 Install Loadcat using a pre-built .pkg file:
 
 ~~~
-$ wget https://github.com/hjr265/loadcat/releases/download/v0.1-alpha.1/loadcat-0.1_alpha.1-1-x86_64.pkg.tar.xz
+$ wget https://github.com/radkoa/loadcat/releases/download/v0.1-alpha.1/loadcat-0.1_alpha.1-1-x86_64.pkg.tar.xz
 # pacman -U loadcat-0.1_alpha.1-1-x86_64.pkg.tar.xz
 ~~~
 
@@ -33,7 +33,7 @@ $ makepkg
 Install Loadcat using the go get command:
 
 ```
-$ go get github.com/hjr265/loadcat/cmd/loadcatd
+$ go get github.com/radkoa/loadcat/cmd/loadcatd
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ If you installed Loadcat using the distribution specific package, you can start 
 If you installed Loadcat from source, you can launch it with:
 
 ```
-$ cd $GOPATH/src/github.com/hjr265/loadcat
+$ cd $GOPATH/src/github.com/radkoa/loadcat
 # $GOPATH/bin/loadcatd
 ```
 
@@ -73,7 +73,7 @@ A lot of Nginx load balancing features is still not covered by this tool and at 
 
 ## Documentation
 
-- [Reference](http://godoc.org/github.com/hjr265/loadcat)
+- [Reference](http://godoc.org/github.com/radkoa/loadcat)
 
 ## Resources
 

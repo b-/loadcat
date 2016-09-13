@@ -3,7 +3,7 @@
 package feline
 
 import (
-	"github.com/hjr265/loadcat/data"
+	"github.com/radkoa/loadcat/data"
 )
 
 type Driver interface {

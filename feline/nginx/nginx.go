@@ -26,21 +26,13 @@ server {
 	index index.html index.htm index.nginx-debian.html;
 
 	location / {
-    # First attempt to serve request as file, then
-    # as directory, then fall back to displaying a 404.
-    try_files $uri $uri/ =404;
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		try_files $uri $uri/ =404;
   }
 
-  server_name _;
-
-
-
-	{{if eq .Balancer.Settings.Protocol "http"}}
-		listen  {{.Balancer.Settings.Port}};
-	{{else if eq .Balancer.Settings.Protocol "https"}}
-		listen  {{.Balancer.Settings.Port}} ssl;
-	{{end}}
-	server_name  {{.Balancer.Settings.Hostname}};
+	server_name _;
+#	server_name  {{.Balancer.Settings.Hostname}};
 
 	{{if eq .Balancer.Settings.Protocol "https"}}
 		ssl                  on;
@@ -49,17 +41,17 @@ server {
 	{{end}}
 
 {{range $srv := .Balancer.Servers}}
-  # {{$srv.Label}}
+	#{{$srv.Label}}
 	location /{{$srv.Settings.Path}} {
 		proxy_set_header  Host $host;
 		proxy_set_header  X-Real-IP $remote_addr;
 		proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_set_header  X-Forwarded-Proto $scheme;
 
+		{{if $srv.Settings.Header}}proxy_set_header {{$srv.Settings.Header}}{{end}};
 		proxy_pass  {{$srv.Settings.Address}};
 
 		proxy_http_version  1.1;
-
 		proxy_set_header  Upgrade $http_upgrade;
 		proxy_set_header  Connection 'upgrade';
 	}

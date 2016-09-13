@@ -51,9 +51,9 @@ server {
 		{{if $srv.Settings.Header}}proxy_set_header {{$srv.Settings.Header}}{{end}};
 		proxy_pass  {{$srv.Settings.Address}};
 
-		proxy_http_version  1.1;
-		proxy_set_header  Upgrade $http_upgrade;
-		proxy_set_header  Connection 'upgrade';
+		#proxy_http_version  1.1;
+		#proxy_set_header  Upgrade $http_upgrade;
+		#proxy_set_header  Connection 'upgrade';
 	}
 
 {{end}}

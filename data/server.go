@@ -16,7 +16,7 @@ type Server struct {
 
 type ServerSettings struct {
 	Address      string
-	Path				 string
+	Path         string
 	Header       string
 	Weight       int
 	Availability Availability

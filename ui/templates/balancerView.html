@@ -14,6 +14,7 @@
 					<tr>
 						<th>Server</th>
 						<th>Address</th>
+						<th>Path</th>
 						<th>Weight</th>
 						<th>Availability</th>
 						<th>Status</th>
@@ -26,6 +27,7 @@
 								<a href="/servers/{{$srv.Id.Hex}}">{{$srv.Label}}</a>
 							</td>
 							<td>{{$srv.Settings.Address}}</td>
+							<td>{{$srv.Settings.Path}}</td>
 							<td>{{$srv.Settings.Weight}}</td>
 							<td>{{$srv.Settings.Availability.Label}}</td>
 							<td>Unknown</td>

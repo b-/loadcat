@@ -55,6 +55,8 @@ func HandleServerCreate(w http.ResponseWriter, r *http.Request) {
 		Label    string `schema:"label"`
 		Settings struct {
 			Address string `schema:"address"`
+			Path string `schema:"path"`
+			Header string `schema:"header"`
 		} `schema:"settings"`
 	}{}
 	err = schema.NewDecoder().Decode(&body, r.PostForm)
@@ -67,6 +69,8 @@ func HandleServerCreate(w http.ResponseWriter, r *http.Request) {
 	srv.BalancerId = bal.Id
 	srv.Label = body.Label
 	srv.Settings.Address = body.Settings.Address
+	srv.Settings.Path = body.Settings.Path
+	srv.Settings.Header = body.Settings.Header
 	err = srv.Put()
 	if err != nil {
 		panic(err)
@@ -145,6 +149,8 @@ func HandleServerUpdate(w http.ResponseWriter, r *http.Request) {
 		Label    string `schema:"label"`
 		Settings struct {
 			Address      string `schema:"address"`
+			Path         string `schema:"path"`
+			Header       string `schema:"header"`
 			Weight       int    `schema:"weight"`
 			Availability string `schema:"availability"`
 		} `schema:"settings"`
@@ -157,6 +163,8 @@ func HandleServerUpdate(w http.ResponseWriter, r *http.Request) {
 
 	srv.Label = body.Label
 	srv.Settings.Address = body.Settings.Address
+	srv.Settings.Path = body.Settings.Paht
+	srv.Settings.Header = body.Settings.Header
 	srv.Settings.Weight = body.Settings.Weight
 	srv.Settings.Availability = data.Availability(body.Settings.Availability)
 	err = srv.Put()

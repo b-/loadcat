@@ -17,7 +17,7 @@
 			<form method="POST" class="form-horizontal">
 				<div class="form-group">
 					<label for="inpLabel" class="col-sm-2 control-label">Label</label>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<input type="text" name="label" class="form-control" id="inpLabel" value="{{.Server.Label}}">
 					</div>
 				</div>
@@ -26,19 +26,33 @@
 
 				<div class="form-group">
 					<label for="inpAddress" class="col-sm-2 control-label">Address</label>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<input type="text" name="settings.address" class="form-control" id="inpAddress" value="{{.Server.Settings.Address}}">
 					</div>
 				</div>
+
+				<div class="form-group">
+					<label for="inpPath" class="col-sm-2 control-label">Path</label>
+					<div class="col-sm-6">
+						<input type="text" name="settings.path" class="form-control" id="inpPath" value="{{.Server.Settings.Path}}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inpHeader" class="col-sm-2 control-label">Header</label>
+					<div class="col-sm-6">
+						<input type="text" name="settings.header" class="form-control" id="inpHeader" value="{{.Server.Settings.Header}}">
+					</div>
+				</div>
+
 				<div class="form-group">
 					<label for="inpWeight" class="col-sm-2 control-label">Weight</label>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<input type="number" name="settings.weight" class="form-control" id="inpWeight" value="{{.Server.Settings.Weight}}">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inpAvailability" class="col-sm-2 control-label">Availability</label>
-					<div class="col-sm-4">
+					<div class="col-sm-6">
 						<select name="settings.availability" class="form-control" id="inpAvailability">
 							{{range $av := .Availabilities}}
 								<option value="{{$av}}" {{if eq $av $.Server.Settings.Availability}}selected{{end}}>{{$av.Label}}</option>

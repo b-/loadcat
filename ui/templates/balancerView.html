@@ -28,8 +28,8 @@
 							<td>
 								<a href="/servers/{{$srv.Id.Hex}}">{{$srv.Label}}</a>
 							</td>
-							<td><a target="_blank" href="{{$srv.Settings.Address}}">{{$srv.Settings.Address}}</a><span class="glyphicon glyphicon-new-window"></span></td>
-							<td><a target="_blank" href="{{.Balancer.Settings.Hostname}}/{{$srv.Settings.Path}}">{{$srv.Settings.Path}}</a><span class="glyphicon glyphicon-new-window"></span></td>
+							<td><a target="_blank" href="{{$srv.Settings.Address}}">{{$srv.Settings.Address}} <small><span class="glyphicon glyphicon-new-window"></span></small></a></td>
+							<td><a target="_blank" href="//{{.Balancer.Settings.Hostname}}/{{$srv.Settings.Path}}">{{$srv.Settings.Path}} <small><span class="glyphicon glyphicon-new-window"></span></small></a></td>
 							<!--
 							<td>{{$srv.Settings.Weight}}</td>
 							<td>{{$srv.Settings.Availability.Label}}</td>

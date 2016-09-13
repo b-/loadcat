@@ -16,7 +16,7 @@
 			<br>
 			<form method="POST" class="form-horizontal">
 				<div class="form-group">
-					<label for="inpLabel" class="col-sm-2 control-label">Label</label>
+					<label for="inpLabel" class="col-sm-4 control-label">Label</label>
 					<div class="col-sm-6">
 						<input type="text" name="label" class="form-control" id="inpLabel" value="{{.Server.Label}}">
 					</div>
@@ -25,27 +25,27 @@
 				<br>
 
 				<div class="form-group">
-					<label for="inpAddress" class="col-sm-2 control-label">Destination address</label>
+					<label for="inpAddress" class="col-sm-4 control-label">Destination address</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.address" class="form-control" id="inpAddress" value="{{.Server.Settings.Address}}">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="inpPath" class="col-sm-2 control-label">Server path</label>
+					<label for="inpPath" class="col-sm-4 control-label">Server path</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.path" class="form-control" id="inpPath" value="{{.Server.Settings.Path}}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inpHeader" class="col-sm-2 control-label">Header</label>
+					<label for="inpHeader" class="col-sm-4 control-label">Header</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.header" class="form-control" id="inpHeader" value="{{.Server.Settings.Header}}">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label for="inpAvailability" class="col-sm-2 control-label">Availability</label>
+					<label for="inpAvailability" class="col-sm-4 control-label">Availability</label>
 					<div class="col-sm-6">
 						<select name="settings.availability" class="form-control" id="inpAvailability">
 							{{range $av := .Availabilities}}

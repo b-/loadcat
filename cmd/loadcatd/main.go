@@ -29,7 +29,7 @@ func main() {
 	*/
 	fmt.Printf("cfgdir: %#v \n", cfg.Current.Core.Dir)
 
-	err = feline.SetBase(filepath.Join(cfg.Current.Core.Dir, "out"))
+	err := feline.SetBase(filepath.Join(cfg.Current.Core.Dir, "out"))
 	if err != nil {
 		log.Fatal(err)
 	}

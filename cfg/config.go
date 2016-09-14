@@ -5,6 +5,7 @@ package cfg
 import (
 	"os"
 	"flag"
+	"log"
 
 	"github.com/naoina/toml"
 )

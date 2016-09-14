@@ -12,6 +12,7 @@ import (
 
 	"github.com/radkoa/loadcat/data"
 	"github.com/radkoa/loadcat/feline"
+	"github.com/radkoa/loadcat/templates"
 )
 
 func ServeServerNewForm(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +26,7 @@ func ServeServerNewForm(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	err = TplServerNewForm.Execute(w, struct {
+	err = templates.TplServerNewForm.Execute(w, struct {
 		Balancer *data.Balancer
 	}{
 		Balancer: bal,
@@ -95,7 +96,7 @@ func ServeServer(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	// err = TplServerView.Execute(w, struct {
+	// err = templates.TplServerView.Execute(w, struct {
 	// 	Server *data.Server
 	// }{
 	// 	Server: srv,
@@ -117,7 +118,7 @@ func ServeServerEditForm(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	err = TplServerEditForm.Execute(w, struct {
+	err = templates.TplServerEditForm.Execute(w, struct {
 		Server         *data.Server
 		Availabilities []data.Availability
 	}{

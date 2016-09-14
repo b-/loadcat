@@ -1,6 +1,6 @@
 // Copyright 2015 The Loadcat Authors. All rights reserved.
 
-package templates
+package ui
 
 import (
 	"html/template"

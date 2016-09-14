@@ -11,6 +11,7 @@ import (
 
 	"github.com/radkoa/loadcat/data"
 	"github.com/radkoa/loadcat/feline"
+	"github.com/radkoa/loadcat/templates"
 )
 
 func ServeBalancerList(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +20,7 @@ func ServeBalancerList(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	err = TplBalancerList.Execute(w, struct {
+	err = templates.TplBalancerList.Execute(w, struct {
 		Balancers []data.Balancer
 	}{
 		Balancers: bals,
@@ -30,7 +31,7 @@ func ServeBalancerList(w http.ResponseWriter, r *http.Request) {
 }
 
 func ServeBalancerNewForm(w http.ResponseWriter, r *http.Request) {
-	err := TplBalancerNewForm.Execute(w, struct {
+	err := templates.TplBalancerNewForm.Execute(w, struct {
 	}{})
 	if err != nil {
 		panic(err)
@@ -78,7 +79,7 @@ func ServeBalancer(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	err = TplBalancerView.Execute(w, struct {
+	err = templates.TplBalancerView.Execute(w, struct {
 		Balancer *data.Balancer
 	}{
 		Balancer: bal,
@@ -99,7 +100,7 @@ func ServeBalancerEditForm(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	err = TplBalancerEditForm.Execute(w, struct {
+	err = templates.TplBalancerEditForm.Execute(w, struct {
 		Balancer     *data.Balancer
 		Protocols    []data.Protocol
 		Algorithms   []data.Algorithm

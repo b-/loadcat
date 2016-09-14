@@ -84,7 +84,8 @@ func HandleServerCreate(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	http.Redirect(w, r, "/servers/"+srv.Id.Hex()+"/edit", http.StatusSeeOther)
+	//http.Redirect(w, r, "/servers/"+srv.Id.Hex()+"/edit", http.StatusSeeOther)
+	http.Redirect(w, r, "/balancers/"+srv.BalancerId.Hex(), http.StatusSeeOther)
 }
 
 func ServeServer(w http.ResponseWriter, r *http.Request) {

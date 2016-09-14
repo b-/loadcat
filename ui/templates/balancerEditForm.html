@@ -1,6 +1,6 @@
 {{define "breadcrumb"}}
-	<li><a href="balancers">Balancers</a></li>
-	<li><a href="balancers/{{.Balancer.Id.Hex}}">{{.Balancer.Label}}</a></li>
+	<li><a href="/balancers">Balancers</a></li>
+	<li><a href="/balancers/{{.Balancer.Id.Hex}}">{{.Balancer.Label}}</a></li>
 	<li class="active">Edit</li>
 {{end}}
 
@@ -98,7 +98,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Update</button>
-						<a href="balancers/{{.Balancer.Id.Hex}}" class="btn btn-default">Cancel</a>
+						<a href="/balancers/{{.Balancer.Id.Hex}}" class="btn btn-default">Cancel</a>
 					</div>
 				</div>
 			</form>

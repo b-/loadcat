@@ -1,5 +1,5 @@
 {{define "breadcrumb"}}
-	<li><a href="balancers">Balancers</a></li>
+	<li><a href="/balancers">Balancers</a></li>
 	<li class="active">{{.Balancer.Label}}</li>
 {{end}}
 
@@ -41,7 +41,7 @@
 			</table>
 			<hr>
 			<div>
-				<a href="balancers/{{.Balancer.Id.Hex}}/servers/new" class="btn btn-primary btn-xs">New Proxy</a>
+				<a href="/balancers/{{.Balancer.Id.Hex}}/servers/new" class="btn btn-primary btn-xs">New Proxy</a>
 			</div>
 		</div>
 	</div>
@@ -72,7 +72,7 @@
 			</dl>
 		-->
 			<hr>
-			<a href="balancers/{{.Balancer.Id.Hex}}/edit" class="btn btn-default btn-xs">Edit</a>
+			<a href="/balancers/{{.Balancer.Id.Hex}}/edit" class="btn btn-default btn-xs">Edit</a>
 		</div>
 	</div>
 

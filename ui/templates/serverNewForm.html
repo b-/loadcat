@@ -1,6 +1,6 @@
 {{define "breadcrumb"}}
-	<li><a href="balancers">Balancers</a></li>
-	<li><a href="balancers/{{.Balancer.Id.Hex}}">{{.Balancer.Label}}</a></li>
+	<li><a href="/balancers">Balancers</a></li>
+	<li><a href="/balancers/{{.Balancer.Id.Hex}}">{{.Balancer.Label}}</a></li>
 	<li><a href="#">Proxy</a></li>
 	<li class="active">New</li>
 {{end}}
@@ -30,12 +30,34 @@
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label for="inpPath" class="col-sm-4 control-label">Server path*</label>
+					<div class="col-sm-6">
+						<input type="text" name="settings.path" class="form-control" id="inpPath">
+						<small>asobu/some/path/</small>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inpHeader" class="col-sm-4 control-label">Header</label>
+					<div class="col-sm-6">
+						<input type="text" name="settings.header" class="form-control" id="inpHeader">
+						<small>HTTP Header</small>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inpPage" class="col-sm-4 control-label">Page</label>
+					<div class="col-sm-6">
+						<input type="text" name="settings.page" class="form-control" id="inpPage">
+						<small>page to display (demo.html)</small>
+					</div>
+				</div>
+
 				<hr>
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Create</button>
-						<a href="balancers/{{.Balancer.Id.Hex}}" class="btn btn-default">Cancel</a>
+						<a href="/balancers/{{.Balancer.Id.Hex}}" class="btn btn-default">Cancel</a>
 					</div>
 				</div>
 			</form>

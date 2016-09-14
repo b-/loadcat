@@ -21,7 +21,7 @@
 					{{range $bal := .Balancers}}
 						<tr>
 							<td>
-								<a href="balancers/{{$bal.Id.Hex}}">{{$bal.Label}}</a>
+								<a href="/balancers/{{$bal.Id.Hex}}">{{$bal.Label}}</a>
 							</td>
 							<td>{{$bal.Settings.Protocol.Label}}</td>
 							<!-- <td>{{$bal.Settings.Algorithm.Label}}</td>
@@ -32,7 +32,7 @@
 			</table>
 			<br>
 			<div>
-				<a href="balancers/new" class="btn btn-primary btn-xs">New Balancer</a>
+				<a href="/balancers/new" class="btn btn-primary btn-xs">New Balancer</a>
 			</div>
 		</div>
 	</div>

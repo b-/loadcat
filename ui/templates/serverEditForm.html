@@ -1,7 +1,7 @@
 {{define "breadcrumb"}}
 	{{$bal := .Server.Balancer}}
-	<li><a href="balancers">Balancers</a></li>
-	<li><a href="balancers/{{$bal.Id.Hex}}">{{$bal.Label}}</a></li>
+	<li><a href="/balancers">Balancers</a></li>
+	<li><a href="/balancers/{{$bal.Id.Hex}}">{{$bal.Label}}</a></li>
 	<li><a href="#">Proxy</a></li>
 	<li><a href="#">{{.Server.Label}}</a></li>
 	<li class="active">Edit</li>
@@ -71,7 +71,7 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary">Update</button>
-						<a href="balancers/{{.Server.BalancerId.Hex}}" class="btn btn-default">Cancel</a>
+						<a href="/balancers/{{.Server.BalancerId.Hex}}" class="btn btn-default">Cancel</a>
 					</div>
 				</div>
 			</form>

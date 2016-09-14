@@ -14,7 +14,7 @@
 			<br>
 			<form method="POST" class="form-horizontal">
 				<div class="form-group">
-					<label for="inpLabel" class="col-sm-4 control-label">Label</label>
+					<label for="inpLabel" class="col-sm-4 control-label">Label*</label>
 					<div class="col-sm-6">
 						<input type="text" name="label" class="form-control" id="inpLabel">
 					</div>
@@ -23,13 +23,14 @@
 				<br>
 
 				<div class="form-group">
-					<label for="inpAddress" class="col-sm-4 control-label">Destination address</label>
+					<label for="inpAddress" class="col-sm-4 control-label">Destination address*</label>
 					<div class="col-sm-6">
 						<input type="text" name="settings.address" class="form-control" id="inpAddress">
+						<small>&lt;protocol&gt;://&lt;server&gt;[&lt;:port&gt;][/path]/</small>
 					</div>
 				</div>
 
-				<br>
+				<hr>
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">

@@ -26,7 +26,7 @@
 					{{range $srv := .Balancer.Servers}}
 						<tr>
 							<td>
-								{{$srv.Label}} <a href="servers/{{$srv.Id.Hex}}"><small><span class="glyphicon glyphicon-pencil"></span></small></a>
+								{{$srv.Label}} <a href="/servers/{{$srv.Id.Hex}}"><small><span class="glyphicon glyphicon-pencil"></span></small></a>
 							</td>
 							<td><a target="_blank" href="{{$srv.Settings.Address}}" class="text-muted">{{$srv.Settings.Address}} <small><span class="glyphicon glyphicon-new-window"></span></small></a></td>
 							<td><a target="_blank" href="//{{.Balancer.Settings.Hostname}}/{{$srv.Settings.Path}}{{if $srv.Settings.Page}}{{$srv.Settings.Page}}{{end}}">{{$srv.Settings.Path}} <small><span class="glyphicon glyphicon-new-window"></span></small></a></td>

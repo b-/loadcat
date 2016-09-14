@@ -58,6 +58,7 @@ func HandleServerCreate(w http.ResponseWriter, r *http.Request) {
 			Address string `schema:"address"`
 			Path string `schema:"path"`
 			Header string `schema:"header"`
+			Page string `schema:"page"`
 		} `schema:"settings"`
 	}{}
 	err = schema.NewDecoder().Decode(&body, r.PostForm)
@@ -72,6 +73,7 @@ func HandleServerCreate(w http.ResponseWriter, r *http.Request) {
 	srv.Settings.Address = body.Settings.Address
 	srv.Settings.Path = body.Settings.Path
 	srv.Settings.Header = body.Settings.Header
+	srv.Settings.Page = body.Settings.Page
 	err = srv.Put()
 	if err != nil {
 		panic(err)
@@ -152,6 +154,7 @@ func HandleServerUpdate(w http.ResponseWriter, r *http.Request) {
 			Address      string `schema:"address"`
 			Path         string `schema:"path"`
 			Header       string `schema:"header"`
+			Page         string `schema:"page"`
 			Weight       int    `schema:"weight"`
 			Availability string `schema:"availability"`
 		} `schema:"settings"`
@@ -166,6 +169,7 @@ func HandleServerUpdate(w http.ResponseWriter, r *http.Request) {
 	srv.Settings.Address = body.Settings.Address
 	srv.Settings.Path = body.Settings.Path
 	srv.Settings.Header = body.Settings.Header
+	srv.Settings.Page = body.Settings.Page
 	srv.Settings.Weight = body.Settings.Weight
 	srv.Settings.Availability = data.Availability(body.Settings.Availability)
 	err = srv.Put()

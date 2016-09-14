@@ -48,7 +48,7 @@ server {
 		proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_set_header  X-Forwarded-Proto $scheme;
 
-		{{if $srv.Settings.Header}}proxy_set_header {{$srv.Settings.Header}}{{end}};
+		{{if $srv.Settings.Header}}proxy_set_header {{$srv.Settings.Header}};{{end}}
 		proxy_pass  {{$srv.Settings.Address}};
 
 		#proxy_http_version  1.1;

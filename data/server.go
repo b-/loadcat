@@ -18,6 +18,7 @@ type ServerSettings struct {
 	Address      string
 	Path         string
 	Header       string
+	Page         string
 	Weight       int
 	Availability Availability
 }

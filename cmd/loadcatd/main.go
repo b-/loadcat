@@ -3,7 +3,7 @@
 package main
 
 import (
-	"flag"
+	_ "flag"
 	"log"
 	"net/http"
 	"os"
@@ -20,13 +20,13 @@ import (
 )
 
 func main() {
-	fconfig := flag.String("config", "loadcat.conf", "")
+	/*fconfig := flag.String("config", "loadcat.conf", "")
 	flag.Parse()
 	err := cfg.LoadFile(*fconfig)
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	*/
 	fmt.Printf("cfgdir: %#v \n", cfg.Current.Core.Dir)
 
 	err = feline.SetBase(filepath.Join(cfg.Current.Core.Dir, "out"))

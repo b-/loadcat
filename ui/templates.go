@@ -3,13 +3,16 @@
 package ui
 
 import (
+	"fmt"
 	"html/template"
-  "path/filepath"
+	"path/filepath"
 	"github.com/radkoa/loadcat/cfg"
 )
 
 var (
 	TplLayout = template.Must(template.New("layout.html").ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/layout.html")))
+
+	fmt.Printf("cfgdir: %#v \n", cfg.Current.Core.Dir)
 
 	TplBalancerList     = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/balancerList.html")))
 	TplBalancerNewForm  = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/balancerNewForm.html")))

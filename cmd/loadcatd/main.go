@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"fmt"
 
 	"github.com/radkoa/loadcat/api"
 	"github.com/radkoa/loadcat/cfg"
@@ -25,6 +26,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	fmt.Printf("cfgdir: %#v \n", cfg.Current.Core.Dir)
 
 	err = feline.SetBase(filepath.Join(cfg.Current.Core.Dir, "out"))
 	if err != nil {

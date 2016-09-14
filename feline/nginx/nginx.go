@@ -41,7 +41,7 @@ server {
 	{{end}}
 
 {{range $srv := .Balancer.Servers}}
-	#{{$srv.Label}}
+	{{if $srv.Settings.Path}}#{{$srv.Label}}
 	location /{{$srv.Settings.Path}} {
 		proxy_set_header  Host $host;
 		proxy_set_header  X-Real-IP $remote_addr;
@@ -56,7 +56,7 @@ server {
 		#proxy_set_header  Connection 'upgrade';
 	}
 
-{{end}}
+{{end}}{{end}}
 }
 `))
 

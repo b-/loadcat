@@ -4,16 +4,18 @@ package ui
 
 import (
 	"html/template"
+  "path/filepath"
+	"github.com/radkoa/loadcat/cfg"
 )
 
 var (
-	TplLayout = template.Must(template.New("layout.html").ParseFiles("ui/templates/layout.html"))
+	TplLayout = template.Must(template.New("layout.html").ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/layout.html")))
 
-	TplBalancerList     = template.Must(template.Must(TplLayout.Clone()).ParseFiles("ui/templates/balancerList.html"))
-	TplBalancerNewForm  = template.Must(template.Must(TplLayout.Clone()).ParseFiles("ui/templates/balancerNewForm.html"))
-	TplBalancerView     = template.Must(template.Must(TplLayout.Clone()).ParseFiles("ui/templates/balancerView.html"))
-	TplBalancerEditForm = template.Must(template.Must(TplLayout.Clone()).ParseFiles("ui/templates/balancerEditForm.html"))
+	TplBalancerList     = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/balancerList.html")))
+	TplBalancerNewForm  = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/balancerNewForm.html")))
+	TplBalancerView     = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/balancerView.html")))
+	TplBalancerEditForm = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/balancerEditForm.html")))
 
-	TplServerNewForm  = template.Must(template.Must(TplLayout.Clone()).ParseFiles("ui/templates/serverNewForm.html"))
-	TplServerEditForm = template.Must(template.Must(TplLayout.Clone()).ParseFiles("ui/templates/serverEditForm.html"))
+	TplServerNewForm  = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/serverNewForm.html")))
+	TplServerEditForm = template.Must(template.Must(TplLayout.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "ui/templates/serverEditForm.html")))
 )

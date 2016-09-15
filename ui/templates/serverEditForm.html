@@ -69,9 +69,12 @@
 				<hr>
 
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-sm-offset-2 col-sm-4">
 						<button type="submit" class="btn btn-primary">Update</button>
-						<a href="/balancers/{{.Server.BalancerId.Hex}}" class="btn btn-default">Cancel</a>
+						<a href="/balancers/57d7f3d1f688016549715d3b" class="btn btn-default">Cancel</a>
+					</div>
+					<div class="col-sm-offset-3 col-sm-3">
+						<a id="btnDelete" href="#" class="btn btn-danger">Delete</a>
 					</div>
 				</div>
 			</form>
@@ -84,5 +87,11 @@
 {{end}}
 
 {{define "scripts"}}
-
+	<script type="text/javascript">
+		$('#btnDelete').on('click', function(event) {
+			event.preventDefault();
+			var url = window.location.href;
+			$('form').attr('action', url.substr(0, url.length-4) + 'delete').submit();
+		});
+	</script>
 {{end}}

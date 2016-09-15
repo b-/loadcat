@@ -94,8 +94,8 @@ func (s *Server) Delete() error {
 			if err != nil {
 				return err
 			}
-			return b.Delete()
+			return b.Delete([]byte(s.Id.Hex()))
 		})
 	}
-	//return "invalid id"
+	return s
 }

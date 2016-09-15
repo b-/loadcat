@@ -3,6 +3,7 @@
 package data
 
 import (
+	"errors"
 	"github.com/boltdb/bolt"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -97,5 +98,6 @@ func (s *Server) Delete() error {
 			return b.Delete([]byte(s.Id.Hex()))
 		})
 	}
-	return s
+	err := errors.New("wrong server id")
+	return err
 }

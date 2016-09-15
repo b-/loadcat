@@ -70,7 +70,7 @@
 
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-4">
-						<button type="submit" class="btn btn-primary">Update</button>
+						<a id="btnSubmit" href="#" class="btn btn-primary">Update</button>
 						<a href="/balancers/57d7f3d1f688016549715d3b" class="btn btn-default">Cancel</a>
 					</div>
 					<div class="col-sm-offset-3 col-sm-3">
@@ -91,7 +91,14 @@
 		$('#btnDelete').on('click', function(event) {
 			event.preventDefault();
 			var url = window.location.href;
+			$('#btnDelete').prepend('<span class="glyphicon glyphicon-refresh glyphicon-rotating"></span>')
 			$('form').attr('action', url.substr(0, url.length-4) + 'delete').submit();
+		});
+		$('#btnSubmit').on('click', function(event) {
+			event.preventDefault();
+			var url = window.location.href;
+			$('#btnSubmit').prepend('<span class="glyphicon glyphicon-refresh glyphicon-rotating"></span>')
+			$('form').submit();
 		});
 	</script>
 {{end}}

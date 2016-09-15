@@ -7,6 +7,22 @@
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css">
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/awesome-bootstrap-checkbox/0.3.5/awesome-bootstrap-checkbox.min.css">
+		<style type="text/css">
+			.glyphicon-rotating {
+				-animation: spin .7s infinite linear;
+				-webkit-animation: spin2 .7s infinite linear;
+			}
+
+			@-webkit-keyframes spin2 {
+				from { -webkit-transform: rotate(0deg);}
+				to { -webkit-transform: rotate(360deg);}
+			}
+
+			@keyframes spin {
+				from { transform: scale(1) rotate(0deg);}
+				to { transform: scale(1) rotate(360deg);}
+			}
+		</style>
 	</head>
 
 	<body>

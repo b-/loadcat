@@ -4,10 +4,10 @@ package data
 
 import (
 	"errors"
-  "sort"
+
 	"github.com/boltdb/bolt"
+	"github.com/bradfitz/slice"
 	"gopkg.in/mgo.v2/bson"
-  "github.com/bradfitz/slice"
 )
 
 type Server struct {
@@ -47,9 +47,9 @@ func ListServersByBalancer(bal *Balancer) ([]Server, error) {
 	if err != nil {
 		return nil, err
 	}
-  srvs = slice.Sort(srvs[:], func(i, j int) bool {
-    return srvs[i].Label < srvs[j].Label
-  })
+	srvs := slice.Sort(srvs[:], func(i, j int) bool {
+		return srvs[i].Label < srvs[j].Label
+	})
 	return srvs, nil
 }
 

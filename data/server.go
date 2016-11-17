@@ -47,7 +47,7 @@ func ListServersByBalancer(bal *Balancer) ([]Server, error) {
 	if err != nil {
 		return nil, err
 	}
-	srvs := slice.Sort(srvs[:], func(i, j int) bool {
+	slice.Sort(srvs[:], func(i, j int) bool {
 		return srvs[i].Label < srvs[j].Label
 	})
 	return srvs, nil

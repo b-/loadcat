@@ -17,8 +17,14 @@ import (
 	"github.com/radkoa/loadcat/feline"
 )
 
-var TplNginxConf = template.Must(template.New("").ParseFiles(filepath.Join(cfg.Current.Core.Dir, "nginx.conf")))
+var (
+	TplConf = template.Must(template.New("conf").Parse(`
+{{template "server" .}}
+`))
+	TplNginxConf = template.Must(template.Must(TplConf.Clone()).ParseFiles(filepath.Join(cfg.Current.Core.Dir, "nginx-template.conf")))
+)
 
+//template.Must(template.New("").ParseFiles(filepath.Join(cfg.Current.Core.Dir, "nginx-template.conf")))
 //template.Must(template.New("").Parse(``))
 
 type Nginx struct {

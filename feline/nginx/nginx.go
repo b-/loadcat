@@ -17,48 +17,9 @@ import (
 	"github.com/radkoa/loadcat/feline"
 )
 
-var TplNginxConf = template.Must(template.New("").Parse(`
-server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+var TplNginxConf = template.Must(template.New("").ParseFiles(filepath.Join(cfg.Current.Core.Dir, "nginx.conf")))
 
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-
-	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files $uri $uri/ =404;
-  }
-
-	server_name _;
-#	server_name  {{.Balancer.Settings.Hostname}};
-
-	{{if eq .Balancer.Settings.Protocol "https"}}
-		ssl                  on;
-		ssl_certificate      {{.Dir}}/server.crt;
-		ssl_certificate_key  {{.Dir}}/server.key;
-	{{end}}
-
-{{range $srv := .Balancer.Servers}}
-	{{if $srv.Settings.Path}}#{{$srv.Label}}
-	location /{{$srv.Settings.Path}} {
-		proxy_set_header  Host $host;
-		proxy_set_header  X-Real-IP $remote_addr;
-		proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-		proxy_set_header  X-Forwarded-Proto $scheme;
-
-		{{if $srv.Settings.Header}}proxy_set_header {{$srv.Settings.Header}};{{end}}
-		proxy_pass  {{$srv.Settings.Address}};
-
-		#proxy_http_version  1.1;
-		#proxy_set_header  Upgrade $http_upgrade;
-		#proxy_set_header  Connection 'upgrade';
-	}
-
-{{end}}{{end}}
-}
-`))
+//template.Must(template.New("").Parse(``))
 
 type Nginx struct {
 	sync.Mutex

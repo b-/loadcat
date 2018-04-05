@@ -3,9 +3,9 @@
 package data
 
 import (
-	"crypto/sha1"
-	"crypto/x509"
-	"encoding/pem"
+	// "crypto/sha1"
+	// "crypto/x509"
+	// "encoding/pem"
 
 	"github.com/boltdb/bolt"
 	"gopkg.in/mgo.v2/bson"

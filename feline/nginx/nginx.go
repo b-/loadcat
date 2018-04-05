@@ -57,13 +57,17 @@ func (n Nginx) Generate(dir string, bal *data.Balancer) error {
 	}
 
 	if bal.Settings.Protocol == "https" {
-		err = ioutil.WriteFile(filepath.Join(dir, "server.crt"), bal.Settings.SSLOptions.Certificate, 0666)
-		if err != nil {
-			return err
+		if bal.Settings.SSLOptions.Certificate != nil {
+			err = ioutil.WriteFile(filepath.Join(dir, "server.crt"), bal.Settings.SSLOptions.Certificate, 0666)
+			if err != nil {
+				return err
+			}
 		}
-		err = ioutil.WriteFile(filepath.Join(dir, "server.key"), bal.Settings.SSLOptions.PrivateKey, 0666)
-		if err != nil {
-			return err
+		if bal.Settings.SSLOptions.PrivateKey != nil {
+			err = ioutil.WriteFile(filepath.Join(dir, "server.key"), bal.Settings.SSLOptions.PrivateKey, 0666)
+			if err != nil {
+				return err
+			}
 		}
 	}
 

@@ -90,21 +90,21 @@ func (l *Balancer) Put() error {
 	if l.Settings.Protocol == "https" {
 		buf := []byte{}
 		raw := l.Settings.SSLOptions.Certificate
-		for {
-			p, rest := pem.Decode(raw)
-			raw = rest
-			if p == nil {
-				break
-			}
-			buf = append(buf, p.Bytes...)
-		}
-		certs, err := x509.ParseCertificates(buf)
-		if err != nil {
-			return err
-		}
-		l.Settings.SSLOptions.DNSNames = certs[0].DNSNames
-		sum := sha1.Sum(certs[0].Raw)
-		l.Settings.SSLOptions.Fingerprint = sum[:]
+		// for {
+		// 	p, rest := pem.Decode(raw)
+		// 	raw = rest
+		// 	if p == nil {
+		// 		break
+		// 	}
+		// 	buf = append(buf, p.Bytes...)
+		// }
+		// certs, err := x509.ParseCertificates(buf)
+		// if err != nil {
+		// 	return err
+		// }
+		// l.Settings.SSLOptions.DNSNames = certs[0].DNSNames
+		// sum := sha1.Sum(certs[0].Raw)
+		// l.Settings.SSLOptions.Fingerprint = sum[:]
 	} else {
 		l.Settings.SSLOptions.CipherSuite = ""
 		l.Settings.SSLOptions.Certificate = nil

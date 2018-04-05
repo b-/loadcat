@@ -3,9 +3,9 @@
 package data
 
 import (
-	"crypto/sha1"
-	"crypto/x509"
-	"encoding/pem"
+	// "crypto/sha1"
+	// "crypto/x509"
+	// "encoding/pem"
 
 	"github.com/boltdb/bolt"
 	"gopkg.in/mgo.v2/bson"
@@ -88,8 +88,8 @@ func (l *Balancer) Put() error {
 		l.Label = "Unlabelled"
 	}
 	if l.Settings.Protocol == "https" {
-		buf := []byte{}
-		raw := l.Settings.SSLOptions.Certificate
+		// buf := []byte{}
+		// raw := l.Settings.SSLOptions.Certificate
 		// for {
 		// 	p, rest := pem.Decode(raw)
 		// 	raw = rest

@@ -33,6 +33,14 @@ type Nginx struct {
 	Systemd *dbus.Conn
 }
 
+func allZero(s []byte) bool {
+	for _, v := range s {
+		if v != 0 {
+			return false
+		}
+	}
+	return true
+}
 func (n Nginx) Generate(dir string, bal *data.Balancer) error {
 	n.Lock()
 	defer n.Unlock()
@@ -57,14 +65,14 @@ func (n Nginx) Generate(dir string, bal *data.Balancer) error {
 	}
 
 	if bal.Settings.Protocol == "https" {
-		if bal.Settings.SSLOptions.Certificate != "" {
+		if !allZero(bal.Settings.SSLOptions.Certificate) {
 			println("writing ", bal.Settings.SSLOptions.Certificate)
 			err = ioutil.WriteFile(filepath.Join(dir, "server.crt"), bal.Settings.SSLOptions.Certificate, 0666)
 			if err != nil {
 				return err
 			}
 		}
-		if bal.Settings.SSLOptions.PrivateKey != "" {
+		if !allZero(bal.Settings.SSLOptions.PrivateKey) {
 			println("writing server.key")
 			err = ioutil.WriteFile(filepath.Join(dir, "server.key"), bal.Settings.SSLOptions.PrivateKey, 0666)
 			if err != nil {

@@ -4,8 +4,6 @@ package cfg
 
 import (
 	"os"
-	"flag"
-	"log"
 
 	"github.com/naoina/toml"
 )
@@ -57,10 +55,10 @@ func init() {
 	Current.Nginx.Mode = "systemd"
 	Current.Nginx.Systemd.Service = "nginx.service"
 
-	fconfig := flag.String("config", "loadcat.conf", "")
+	/*fconfig := flag.String("config", "loadcat.conf", "")
 	flag.Parse()
 	err := LoadFile(*fconfig)
 	if err != nil {
 		log.Fatal(err)
-	}
+	}*/
 }

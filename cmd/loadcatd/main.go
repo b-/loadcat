@@ -9,12 +9,12 @@ import (
 	"os/signal"
 	"path/filepath"
 
-	"github.com/radkoa/loadcat/api"
-	"github.com/radkoa/loadcat/cfg"
-	"github.com/radkoa/loadcat/data"
-	"github.com/radkoa/loadcat/feline"
-	_ "github.com/radkoa/loadcat/feline/nginx"
-	"github.com/radkoa/loadcat/ui"
+	"github.com/b-/loadcat/api"
+	"github.com/b-/loadcat/cfg"
+	"github.com/b-/loadcat/data"
+	"github.com/b-/loadcat/feline"
+	_ "github.com/b-/loadcat/feline/nginx"
+	"github.com/b-/loadcat/ui"
 )
 
 func main() {

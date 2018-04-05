@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/radkoa/loadcat/cfg"
-	"github.com/radkoa/loadcat/data"
+	"github.com/b-/loadcat/cfg"
+	"github.com/b-/loadcat/data"
 )
 
 type Feline struct {

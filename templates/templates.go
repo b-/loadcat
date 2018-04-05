@@ -5,7 +5,8 @@ package templates
 import (
 	"html/template"
 	"path/filepath"
-	"github.com/radkoa/loadcat/cfg"
+
+	"github.com/b-/loadcat/cfg"
 )
 
 var (

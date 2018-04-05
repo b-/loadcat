@@ -12,9 +12,9 @@ import (
 
 	"github.com/coreos/go-systemd/dbus"
 
-	"github.com/radkoa/loadcat/cfg"
-	"github.com/radkoa/loadcat/data"
-	"github.com/radkoa/loadcat/feline"
+	"github.com/b-/loadcat/cfg"
+	"github.com/b-/loadcat/data"
+	"github.com/b-/loadcat/feline"
 )
 
 var (

@@ -3,7 +3,7 @@
 package feline
 
 import (
-	"github.com/radkoa/loadcat/data"
+	"github.com/b-/loadcat/data"
 )
 
 type Driver interface {

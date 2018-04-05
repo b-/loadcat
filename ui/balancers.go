@@ -3,9 +3,9 @@
 package ui
 
 import (
-	"bytes"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 	"github.com/gorilla/schema"
@@ -17,8 +17,7 @@ import (
 )
 
 var (
-	errBuf bytes.Buffer
-	logger = log.New(&errBuf, "WARNING:", log.Lshortfile)
+	logger = log.New(os.Stderr, "WARNING:", log.Llongfile|log.LstdFlags)
 )
 
 func ServeBalancerList(w http.ResponseWriter, r *http.Request) {
@@ -93,8 +92,8 @@ func ServeBalancer(w http.ResponseWriter, r *http.Request) {
 	})
 	if err != nil {
 		//panic(err)
-		http.Error(w, "Not Found", http.StatusNotFound)
-		logger.Print(err)
+		http.Error(w, err.Error(), http.StatusNotFound)
+		logger.Output(2, err.Error())
 
 	}
 }

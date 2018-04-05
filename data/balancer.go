@@ -3,14 +3,15 @@
 package data
 
 import (
-	// "crypto/sha1"
-	// "crypto/x509"
-	// "encoding/pem"
+	_ "crypto/sha1" // we will need these when we 
+	_ "crypto/x509"
+	_ "encoding/pem"
 
 	"github.com/boltdb/bolt"
 	"gopkg.in/mgo.v2/bson"
 )
 
+// Balancer a hostname we're going to listen for and load-balance
 type Balancer struct {
 	Id       bson.ObjectId
 	Label    string

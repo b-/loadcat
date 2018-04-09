@@ -20,6 +20,7 @@ var (
 	logger = log.New(os.Stderr, "WARNING:", log.Llongfile|log.LstdFlags)
 )
 
+// ServeBalancerList - we received a request for the list of Balancers, so we serve that list of Balancers/
 func ServeBalancerList(w http.ResponseWriter, r *http.Request) {
 	bals, err := data.ListBalancers()
 	if err != nil {
@@ -36,6 +37,7 @@ func ServeBalancerList(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ServeBalancerNewForm - we received the request to make a new Balancer, so we serve the form to fill out.
 func ServeBalancerNewForm(w http.ResponseWriter, r *http.Request) {
 	err := templates.TplBalancerNewForm.Execute(w, struct {
 	}{})
@@ -44,6 +46,7 @@ func ServeBalancerNewForm(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// HandleBalancerCreate - Create a new balancer based on the POSTed form data.
 func HandleBalancerCreate(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
@@ -74,15 +77,17 @@ func HandleBalancerCreate(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/balancers/"+bal.Id.Hex()+"/edit", http.StatusSeeOther)
 }
 
+// ServeBalancer - we received a request for a specific Balancer, so we serve the details on it.
 func ServeBalancer(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	if !bson.IsObjectIdHex(vars["id"]) {
-		http.Error(w, "Not Found", http.StatusNotFound)
+	if !bson.IsObjectIdHex(vars["id"]) { // If the requested Balancer's ID is not a valid ID,
+		http.Error(w, "Not Found", http.StatusNotFound) // serve an error 404.
 		return
 	}
 	bal, err := data.GetBalancer(bson.ObjectIdHex(vars["id"]))
 	if err != nil {
-		panic(err)
+		//panic(err)
+		logger.Output(2, err.Error())
 	}
 
 	err = templates.TplBalancerView.Execute(w, struct {
@@ -98,6 +103,7 @@ func ServeBalancer(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ServeBalancerEditForm - we received a request to edit a specific balancer, so we serve the edit form
 func ServeBalancerEditForm(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	if !bson.IsObjectIdHex(vars["id"]) {
@@ -149,6 +155,7 @@ func HandleBalancerUpdate(w http.ResponseWriter, r *http.Request) {
 			Protocol   string `schema:"protocol"`
 			Algorithm  string `schema:"algorithm"`
 			SSLOptions struct {
+				LetsEncrypt bool    `schema:letsencrypt`
 				CipherSuite string  `schema:"cipher_suite"`
 				Certificate *string `schema:"certificate"`
 				PrivateKey  *string `schema:"private_key"`
@@ -167,11 +174,12 @@ func HandleBalancerUpdate(w http.ResponseWriter, r *http.Request) {
 	bal.Settings.Protocol = data.Protocol(body.Settings.Protocol)
 	bal.Settings.Algorithm = data.Algorithm(body.Settings.Algorithm)
 	if body.Settings.Protocol == "https" {
+		bal.Settings.SSLOptions.LetsEncrypt = body.Settings.SSLOptions.LetsEncrypt
 		bal.Settings.SSLOptions.CipherSuite = "recommended"
-		if body.Settings.SSLOptions.Certificate != nil {
+		if !body.Settings.SSLOptions.LetsEncrypt { //if body.Settings.SSLOptions.Certificate != nil {
 			bal.Settings.SSLOptions.Certificate = []byte(*body.Settings.SSLOptions.Certificate)
-		}
-		if body.Settings.SSLOptions.PrivateKey != nil {
+			//}
+			//if body.Settings.SSLOptions.PrivateKey != nil {
 			bal.Settings.SSLOptions.PrivateKey = []byte(*body.Settings.SSLOptions.PrivateKey)
 		}
 	}

@@ -3,21 +3,22 @@
 package data
 
 import (
-	_ "crypto/sha1" // we will need these when we 
-	_ "crypto/x509"
-	_ "encoding/pem"
+	"crypto/sha1" // we will need these when we
+	"crypto/x509"
+	"encoding/pem"
 
 	"github.com/boltdb/bolt"
 	"gopkg.in/mgo.v2/bson"
 )
 
-// Balancer a hostname we're going to listen for and load-balance
+// Balancer - a host that we're going to listen for and load-balance
 type Balancer struct {
 	Id       bson.ObjectId
 	Label    string
 	Settings BalancerSettings
 }
 
+// BalancerSettings - the settings for a Balancer
 type BalancerSettings struct {
 	Hostname   string
 	Port       int
@@ -26,15 +27,18 @@ type BalancerSettings struct {
 	SSLOptions SSLOptions
 }
 
+// SSLOptions - the SSL options for a Balancer.
+// If BalancerSettings.Protocol = HTTP this is ignored
 type SSLOptions struct {
 	CipherSuite CipherSuite
 	Certificate []byte
 	PrivateKey  []byte
-
+	LetsEncrypt bool // This determines whether we manage the SSL certificate ourselves
 	DNSNames    []string
 	Fingerprint []byte
 }
 
+// ListBalancers - return a list of Balancers
 func ListBalancers() ([]Balancer, error) {
 	bals := []Balancer{}
 	err := DB.View(func(tx *bolt.Tx) error {
@@ -56,6 +60,7 @@ func ListBalancers() ([]Balancer, error) {
 	return bals, nil
 }
 
+// GetBalancer - get Balancer by id
 func GetBalancer(id bson.ObjectId) (*Balancer, error) {
 	bal := &Balancer{}
 	err := DB.View(func(tx *bolt.Tx) error {
@@ -77,10 +82,12 @@ func GetBalancer(id bson.ObjectId) (*Balancer, error) {
 	return bal, nil
 }
 
+// Servers - return a list of servers for a given Balancer
 func (l *Balancer) Servers() ([]Server, error) {
 	return ListServersByBalancer(l)
 }
 
+// Put - save a new balancer
 func (l *Balancer) Put() error {
 	if !l.Id.Valid() {
 		l.Id = bson.NewObjectId()
@@ -89,23 +96,25 @@ func (l *Balancer) Put() error {
 		l.Label = "Unlabelled"
 	}
 	if l.Settings.Protocol == "https" {
-		// buf := []byte{}
-		// raw := l.Settings.SSLOptions.Certificate
-		// for {
-		// 	p, rest := pem.Decode(raw)
-		// 	raw = rest
-		// 	if p == nil {
-		// 		break
-		// 	}
-		// 	buf = append(buf, p.Bytes...)
-		// }
-		// certs, err := x509.ParseCertificates(buf)
-		// if err != nil {
-		// 	return err
-		// }
-		// l.Settings.SSLOptions.DNSNames = certs[0].DNSNames
-		// sum := sha1.Sum(certs[0].Raw)
-		// l.Settings.SSLOptions.Fingerprint = sum[:]
+		if !l.Settings.SSLOptions.LetsEncrypt {
+			buf := []byte{}
+			raw := l.Settings.SSLOptions.Certificate
+			for {
+				p, rest := pem.Decode(raw)
+				raw = rest
+				if p == nil {
+					break
+				}
+				buf = append(buf, p.Bytes...)
+			}
+			certs, err := x509.ParseCertificates(buf)
+			if err != nil {
+				return err
+			}
+			l.Settings.SSLOptions.DNSNames = certs[0].DNSNames
+			sum := sha1.Sum(certs[0].Raw)
+			l.Settings.SSLOptions.Fingerprint = sum[:]
+		}
 	} else {
 		l.Settings.SSLOptions.CipherSuite = ""
 		l.Settings.SSLOptions.Certificate = nil

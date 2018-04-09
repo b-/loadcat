@@ -68,6 +68,15 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="inpLetsEncrypt" class="col-sm-2 control-label">Let's Encrypt</label>
+						<div class="col-sm-4">
+							<div class="form-check checkbox">
+								<input class="form-check-input" name="settings.ssl_options.letsencrypt" id="inpLetsEncrypt" type="checkbox" value="{{.Balancer.Settings.SSLOptions.LetsEncrypt}}">
+								<label></label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="inpCertificate" class="col-sm-2 control-label">Certificate</label>
 						{{if .Balancer.Settings.SSLOptions.Fingerprint}}
 							<div class="col-sm-4">

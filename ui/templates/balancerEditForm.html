@@ -132,6 +132,17 @@
 			}
 		})
 		.trigger('change')
+		
+		$('#inpLetsEncrypt').on('click', function() {
+			if($(this).is(':checked')) {
+				$('#inpCertificate').attr('disabled', true)
+				$('#inpPrivateKey').attr('disabled', true)
+			} else {
+				$('#inpCertificate').attr('disabled', false)
+				$('#inpPrivateKey').attr('disabled', false)
+			}
+		})
+		.trigger('change')
 
 		$('#btnReplaceCertificate').on('click', function(event) {
 			event.preventDefault()

@@ -71,6 +71,9 @@
 						<label for="inpLetsEncrypt" class="col-sm-2 control-label">Let's Encrypt</label>
 						<div class="col-sm-4">
 							<div class="form-check checkbox">
+							<script>
+								var letsencrypt_checked = {{.Balancer.Settings.SSLOptions.LetsEncrypt}};
+							</script>
 								<input class="form-check-input" name="settings.ssl_options.letsencrypt" id="inpLetsEncrypt" type="checkbox" value="{{.Balancer.Settings.SSLOptions.LetsEncrypt}}">
 								<label></label>
 							</div>
@@ -132,7 +135,10 @@
 			}
 		})
 		.trigger('change')
-		
+
+		if(letsencrypt_checked) document.querySelector('[name="letsencrypt"]').checked = true
+		if(!letsencrypt_checked) document.querySelector('[name="letsencrypt"]').checked = false
+
 		$('#inpLetsEncrypt').on('click', function() {
 			if($(this).is(':checked')) {
 				$('#inpCertificate').attr('disabled', true)

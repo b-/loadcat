@@ -136,6 +136,7 @@
 		})
 		.trigger('change')
 
+<<<<<<< HEAD
 function checkLetsEncrypt() {
   if(letsencrypt_checked) {
     document.querySelector('[name="letsencrypt_switch"]').checked = true;
@@ -151,6 +152,10 @@ document.querySelector('[name="letsencrypt_switch"]').addEventListener('change',
   letsencrypt_checked = !letsencrypt_checked;
   checkLetsEncrypt();
 });
+=======
+		if(letsencrypt_checked) document.querySelector('[name="letsencrypt"]').checked = true
+		if(!letsencrypt_checked) document.querySelector('[name="letsencrypt"]').checked = false
+>>>>>>> 4e8fd518a1f951819a9929823c261307733c8e59
 
 		$('#inpLetsEncrypt').on('click', function() {
 			if($(this).is(':checked')) {

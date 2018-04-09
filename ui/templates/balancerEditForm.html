@@ -71,7 +71,8 @@
 						<label for="inpLetsEncrypt" class="col-sm-2 control-label">Let's Encrypt</label>
 						<div class="col-sm-4">
 							<div class="form-check checkbox">
-								<input class="form-check-input" name="settings.ssl_options.letsencrypt" id="inpLetsEncrypt" type="checkbox" value="{{.Balancer.Settings.SSLOptions.LetsEncrypt}}">
+								<input class="form-check-input" name="letsencrypt_switch" id="inpLetsEncrypt" type="checkbox" value="{{.Balancer.Settings.SSLOptions.LetsEncrypt}}">
+								 <input type="hidden" name="letsencrypt" value="{{.Balancer.Settings.SSLOptions.LetsEncrypt}}" />
 								<label></label>
 							</div>
 						</div>
@@ -121,6 +122,8 @@
 
 {{define "scripts"}}
 	<script type="text/javascript">
+		var letsencrypt_checked = {{.Balancer.Settings.SSLOptions.LetsEncrypt}};
+
 		$('#inpProtocol').on('change', function() {
 			switch($(this).val()) {
 				case 'http':
@@ -132,7 +135,23 @@
 			}
 		})
 		.trigger('change')
-		
+
+function checkLetsEncrypt() {
+  if(letsencrypt_checked) {
+    document.querySelector('[name="letsencrypt_switch"]').checked = true;
+    document.querySelector('[name="letsencrypt"]').value = true;
+  } else {
+    document.querySelector('[name="letsencrypt_switch"]').checked = false;
+    document.querySelector('[name="letsencrypt"]').value = false;
+  }
+}
+
+checkLetsEncrypt();
+document.querySelector('[name="letsencrypt_switch"]').addEventListener('change', function(e) {
+  letsencrypt_checked = !letsencrypt_checked;
+  checkLetsEncrypt();
+});
+
 		$('#inpLetsEncrypt').on('click', function() {
 			if($(this).is(':checked')) {
 				$('#inpCertificate').attr('disabled', true)
